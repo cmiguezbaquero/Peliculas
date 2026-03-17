@@ -7,6 +7,7 @@ import java.util.List;
 public interface IUsuarioService {
     public List<Usuario> findAll();
     public Usuario findById (Long id);
-    public void save (String nombre, String mail);
+    public void save (Usuario usuario);
     public void deleteById (Long id);
+
 }

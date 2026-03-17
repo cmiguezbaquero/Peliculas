@@ -3,10 +3,7 @@ package com.iesdeteis.peliculas.controller;
 import com.iesdeteis.peliculas.model.Usuario;
 import com.iesdeteis.peliculas.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,13 +24,18 @@ public class UsuarioController {
         return usuarioService.findById(id);
     }
 
-    @GetMapping ("/usuarios/")
-    public void saveUsuario(@RequestParam String nombre, @RequestParam String email){
-        usuarioService.save(nombre,email);
+    @PostMapping ("/usuarios/")
+    public void saveUsuario(@RequestBody Usuario usuario){
+        usuarioService.save(usuario);
     }
 
-    @GetMapping("/usuarios/delete/{id}")
+    @DeleteMapping("/usuarios/{id}")
     public void deleteUsuario (@PathVariable Long id){
         usuarioService.deleteById(id);
+    }
+
+    @PutMapping("/usuarios/{id}")
+    public void updateUsuario(@RequestBody Usuario usuario) {
+        usuarioService.save(usuario);
     }
 }
